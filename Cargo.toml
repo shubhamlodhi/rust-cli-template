@@ -1,0 +1,8 @@
+[package]
+name = "{{crate_name}}"
+version = "0.1.0"
+authors = ["{{author-name}}"]
+description = "{{project-description}}"
+edition = "{{edition}}"
+
+[dependencies]

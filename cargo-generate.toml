@@ -1,0 +1,13 @@
+[template]
+# Define which files should be processed for placeholders
+include = ["Cargo.toml", "src/**"]
+exclude = [".git/**"]
+
+# Define custom variables for the template
+[placeholders]
+project-description = "A Rust project generated using cargo-generate."
+author-name = "{{authors}}"
+
+# Optional: Predefined values for placeholders
+[defaults]
+edition = "2021"
