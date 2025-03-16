@@ -1,8 +1,29 @@
 [package]
-name = "{{crate_name}}"
+name = "{{project-name}}"
 version = "0.1.0"
-authors = ["{{author-name}}"]
-description = "{{project-description}}"
 edition = "{{edition}}"
+authors = ["{{author-name}} <{{author-email}}>"]
+description = "{{project-description}}"
+readme = "README.md"
+license = "MIT"
 
 [dependencies]
+clap = { version = "4.4", features = ["derive"] }
+{% if include-logging %}
+env_logger = "0.10"
+log = "0.4=
+{% endif %}
+{% if include-config %}
+config = "0.13"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+{% endif %}
+anyhow = "1.0"
+thiserror = "1.0"
+
+[dev-dependencies]
+{% if include-tests %}
+assert_cmd = "2.0"
+predicates = "3.0"
+tempfile = "3.8"
+{% endif %}

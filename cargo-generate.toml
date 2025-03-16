@@ -1,6 +1,6 @@
 [template]
 # Define which files should be processed for placeholders
-include = ["Cargo.toml", "src/**"]
+include = ["Cargo.toml", "src/**", "README.md", ".github/**", "tests/**"]
 exclude = [".git/**"]
 
 # Define custom variables for the template
@@ -15,6 +15,36 @@ default = "A Rust project generated using cargo-generate."
 type = "string"
 prompt = "Author name"
 default = "{{authors}}"
+
+[placeholders.author-email]
+type = "string"
+prompt = "Author email"
+default = ""
+
+[placeholders.cli-name]
+type = "string"
+prompt = "CLI command name"
+default = "{{project-name}}"
+
+[placeholders.include-logging]
+type = "bool"
+prompt = "Include logging functionality?"
+default = true
+
+[placeholders.include-config]
+type = "bool"
+prompt = "Include configuration file support?"
+default = true
+
+[placeholders.include-tests]
+type = "bool"
+prompt = "Include test examples?"
+default = true
+
+[placeholders.include-github-actions]
+type = "bool"
+prompt = "Include GitHub Actions workflows?"
+default = true
 
 # Optional: Predefined values for placeholders
 [defaults]
