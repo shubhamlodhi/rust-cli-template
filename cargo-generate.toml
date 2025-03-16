@@ -5,8 +5,16 @@ exclude = [".git/**"]
 
 # Define custom variables for the template
 [placeholders]
-project-description = "A Rust project generated using cargo-generate."
-author-name = "{{authors}}"
+# Changed from string to table format
+[placeholders.project-description]
+type = "string"
+prompt = "Project description"
+default = "A Rust project generated using cargo-generate."
+
+[placeholders.author-name]
+type = "string"
+prompt = "Author name"
+default = "{{authors}}"
 
 # Optional: Predefined values for placeholders
 [defaults]
