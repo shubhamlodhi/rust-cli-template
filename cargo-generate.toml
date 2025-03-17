@@ -1,5 +1,13 @@
 [template]
+cargo_generate_version = ">=0.10.0"
 description = "A template for creating Rust CLI apps"
+include = ["src/**/*", "Cargo.toml", "README.md", ".gitignore"]
+exclude = ["target/**/*"]
 
 [placeholders]
+cli_name = { type = "string", prompt = "What is the name of your CLI application?" }
 project_description = { type = "string", prompt = "Enter a description for your project" }
+author_name = { type = "string", prompt = "What is your name?" }
+author_email = { type = "string", prompt = "What is your email?" }
+github_username = { type = "string", prompt = "What is your GitHub username?", default = "" }
+use_config = { type = "bool", prompt = "Do you want to include configuration file support?", default = true }
