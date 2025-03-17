@@ -1,56 +1,27 @@
-{% if include-logging %}
-use log::{info, debug, error};
-{% endif %}
-use clap::Parser;
-use anyhow::Result;
+use clap::{Parser, Subcommand};
 
-{% if include-config %}
-mod config;
-{% endif %}
-mod cli;
-mod error;
-
-use cli::Cli;
-use error::AppError;
-
-fn main() -> Result<()> {
-    {% if include-logging %}
-    env_logger::init();
-    info!("Starting {{cli-name}}");
-    {% endif %}
-
-    let cli = Cli::parse();
-    {% if include-logging %}
-    debug!("CLI arguments: {:?}", cli);
-    {% endif %}
-
-    match run(cli) {
-        Ok(_) => {
-            {% if include-logging %}
-            info!("{{cli-name}} completed successfully");
-            {% endif %}
-            Ok(())
-        },
-        Err(e) => {
-            {% if include-logging %}
-            error!("Error: {}", e);
-            {% endif %}
-            eprintln!("Error: {}", e);
-            Err(e)
-        }
-    }
+#[derive(Parser)]
+#[command(name = "cli-app")]
+#[command(about = "A template for a Rust CLI app", long_about = None)]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
 }
 
-fn run(cli: Cli) -> Result<()> {
-    {% if include-logging %}
-    info!("Processing command: {:?}", cli.command);
-    {% endif %}
+#[derive(Subcommand)]
+enum Commands {
+    Example {
+        #[arg(short, long)]
+        name: String,
+    },
+}
 
-    match cli.command {
-        cli::Commands::Example { name } => {
+fn main() {
+    let cli = Cli::parse();
+
+    match &cli.command {
+        Commands::Example { name } => {
             println!("Hello, {}!", name);
-            Ok(())
         }
-        // Add more commands as needed
     }
 }
